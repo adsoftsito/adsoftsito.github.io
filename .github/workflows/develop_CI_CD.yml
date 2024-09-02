@@ -1,4 +1,4 @@
-name: Develop CI_CD
+name: Develop CICD
 on: 
   push:
     branches: [ "develop"]
