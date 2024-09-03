@@ -41,4 +41,7 @@ jobs:
         run: |
           docker cp dist/mycv/browser/.  serving_base:/usr/local/apache2/htdocs
 
-           
+      - name: list container
+        run: |
+          docker exec serving_base ls -la /usr/local/apache2/htdocs
+    
