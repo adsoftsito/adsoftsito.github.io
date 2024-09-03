@@ -27,4 +27,20 @@ jobs:
           
       - name: show dir
         run: |
-          ls -la dist
+          ls -la dist/mycv/
+
+      - name: download, run httpd image, container name serving_base
+        run: |
+          docker run -d --name serving_base httpd
+          
+      - name: docker ps
+        run: |
+          docker ps
+          
+      - name: cp angular build to container
+        run: |
+          docker cp dist/mycv/.  serving_base:/usr/local/apache2/htdocs
+
+      - name: curl 
+        run: |
+           curl localhost
