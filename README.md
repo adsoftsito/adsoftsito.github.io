@@ -1,28 +1,22 @@
 # adsoftsito.github.io
 
-Sitio público de GitHub Pages que sirve la versión web del proyecto Flutter [adsoftsito/adsoft](https://github.com/adsoftsito/adsoft).
+Sitio público de GitHub Pages que sirve la versión web de la aplicación Flutter.
 
 🌐 **URL pública:** [https://adsoftsito.github.io](https://adsoftsito.github.io)
 
 ## ⚠️ Configuración inicial obligatoria
 
-Para que el despliegue automático funcione, el dueño del repositorio debe realizar **dos pasos en GitHub** antes de mergear esta rama:
+Para que el despliegue automático funcione, el dueño del repositorio debe realizar los siguientes pasos en GitHub:
 
-### Paso 1 — Cambiar el origen de GitHub Pages a "GitHub Actions"
+### Paso 1 — Agregar el código fuente Flutter a este repositorio
+
+El código de la aplicación Flutter debe estar en este mismo repositorio (`adsoftsito/adsoftsito.github.io`). Asegúrate de que el archivo `pubspec.yaml` y el código fuente se encuentren en la raíz del repositorio.
+
+### Paso 2 — Cambiar el origen de GitHub Pages a "GitHub Actions"
 
 > **Settings → Pages → Build and deployment → Source → seleccionar "GitHub Actions"**
 
 Actualmente GitHub Pages está configurado en modo "Deploy from a branch", lo que publica el README.md como página Jekyll. Al cambiar a **"GitHub Actions"**, solo el workflow de esta rama podrá publicar el sitio.
-
-### Paso 2 — Configurar el secret (solo si `adsoftsito/adsoft` es privado)
-
-Si el repositorio fuente es privado, crear un [Personal Access Token (PAT)](https://docs.github.com/en/authentication/keeping-your-account-and-data-safe/managing-your-personal-access-tokens) con permisos de lectura (`repo`) y agregarlo como secret:
-
-```
-Settings → Secrets and variables → Actions → New repository secret
-Nombre: ADSOFT_REPO_TOKEN
-Valor: <tu PAT>
-```
 
 ### Paso 3 — Mergear esta rama a `main`
 
@@ -36,7 +30,7 @@ El despliegue se realiza automáticamente mediante GitHub Actions cada vez que s
 
 ### Pasos del proceso automatizado
 
-1. Se clona el repositorio fuente [`adsoftsito/adsoft`](https://github.com/adsoftsito/adsoft) (requiere el secret `ADSOFT_REPO_TOKEN` si es privado).
+1. Se clona este repositorio (`adsoftsito/adsoftsito.github.io`).
 2. Se instala Flutter en su canal `stable`.
 3. Se ejecuta `flutter build web --release --base-href "/"`.
 4. Los archivos generados en `build/web/` se publican en GitHub Pages.
@@ -46,16 +40,16 @@ El despliegue se realiza automáticamente mediante GitHub Actions cada vez que s
 Si se desea publicar manualmente sin esperar el CI:
 
 ```bash
-# Clonar el proyecto Flutter
-git clone https://github.com/adsoftsito/adsoft.git
-cd adsoft
+# Clonar este repositorio
+git clone https://github.com/adsoftsito/adsoftsito.github.io.git
+cd adsoftsito.github.io
 
 # Instalar dependencias y compilar para web
 flutter pub get
 flutter build web --release --base-href "/"
 
 # Los archivos generados están en build/web/
-# Copiarlos al repositorio adsoftsito.github.io y hacer push
+# Hacer push a main para que el workflow los publique automáticamente
 ```
 
 ## Tecnologías
